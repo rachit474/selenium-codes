@@ -1,0 +1,173 @@
+package emergencies;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.LogStatus;
+
+
+
+
+public class Emergencies {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+		System.setProperty("webdriver.chrome.driver", "D:/chromedriver.exe");
+		
+		String filepath = "D:\\rough\\heifer\\emergenciestestreport.html";
+		
+		String baseurl = "http://heifernepal.org/emergencies/nepal-earthquake-2015";
+		
+		ExtentReports logger = ExtentReports.get(Emergencies.class);
+		
+		logger.init (filepath, true);
+		
+		WebDriver driver = new ChromeDriver();
+		
+		driver.manage().window().maximize();
+		
+		driver.get(baseurl);
+		
+		String actualcaption = "Infographic";
+		
+		String requiredcaption = "Our work in numbers";
+		
+		String lead = driver.getPageSource();
+		
+		driver.getPageSource();
+		
+		logger.startTest("1. Infographic caption verfication");
+		
+		if (lead.contains(requiredcaption)){
+			Assert.assertTrue(lead.contains(requiredcaption));
+			System.out.println("There is required caption for infographics.");
+			logger.log(LogStatus.PASS, "There is required caption for infographics.");
+			
+		}  else {
+			
+			System.out.println("Test has been skipped.");
+			logger.log(LogStatus.SKIP, "Test has been skipped.");
+			
+		}
+		
+		logger.endTest();
+		
+		
+		//hamburger menu test/
+		
+		driver.get("http://heifernepal.org");
+		
+		Dimension n = new Dimension(360,700);  
+		driver.manage().window().setSize(n);
+		
+		Thread.sleep(5000);
+		
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,1200)", "");
+		
+		Thread.sleep(5000);
+		
+		driver.findElement(By.className("menu-icon")).click();
+		
+		Thread.sleep(5000);
+		
+		String resmenu1 = "ENDING HUNGER & POVERTY";
+		
+		String responsivelinks = driver.getPageSource();
+		
+		driver.getPageSource();
+		
+		logger.startTest("2. Hamburger Menu Verification");
+		
+		if (responsivelinks.contains(resmenu1)){
+			Assert.assertTrue(responsivelinks.contains(resmenu1));
+			System.out.println("Hamburger menu is consistant and working properly.");
+			logger.log(LogStatus.PASS, "Hamburger menu is consistant and working properly.");
+			
+		} else if (!responsivelinks.contains(resmenu1)){
+			Assert.assertTrue(!responsivelinks.contains(resmenu1));
+			System.out.println("Hamburger menu is not working properly while scrolling down.");
+			logger.log(LogStatus.FAIL, "Hamburger menu is not working properly while scrolling down.");
+			
+		} else {
+			System.out.println("Test has been skipped.");
+			logger.log(LogStatus.SKIP, "Test has been skipped.");
+		}
+		
+		logger.endTest();
+		
+		//implementing partners section
+		
+		driver.manage().window().maximize();
+		
+		driver.get("http://heifernepal.org/partners");
+		
+		
+		
+		String actualcontent = driver.findElement(By.id("implementing-partners")).getText();
+		
+		System.out.println(actualcontent);
+		
+		driver.findElement(By.id("implementing-partners")).getText();
+		
+		String partners = driver.getPageSource();
+		
+		driver.getPageSource();
+		
+		String content = actualcontent;
+		
+		logger.startTest("3. Implementing partners block verification");
+		
+		if (actualcontent.equals(null)){
+			Assert.assertTrue(actualcontent.equals(null));
+			System.out.println("Implementing partner block is not ready.");
+			logger.log(LogStatus.FAIL, "Implementing partner block is not ready.");
+			
+		} else if (!actualcontent.equals(null)) {
+			Assert.assertTrue(!actualcontent.equals(null));
+			System.out.println("Implementing partner block is now ready.");
+			logger.log(LogStatus.PASS, "Implementing partner block is now ready.");
+			
+		} else {
+			System.out.println("Test has been skipped.");
+			logger.log(LogStatus.SKIP, "Test has been skipped.");
+		}
+		
+		
+		
+		logger.endTest();
+		
+		
+		logger.startTest("4. Inner pages banner height verification");
+		
+		driver.get("http://heifernepal.org/partners");
+		
+		driver.findElement(By.className("teaser-header")).getCssValue("height");
+		
+		String banner = driver.findElement(By.className("teaser-header")).getCssValue("height");
+		
+		String main = driver.getPageSource();
+		
+		driver.getPageSource();
+		
+		
+		
+		logger.endTest();
+		
+		
+		
+		WebDriver report = new ChromeDriver ();
+		
+		report.manage().window().maximize();
+		
+		report.get(filepath);
+		
+		
+	}
+
+}

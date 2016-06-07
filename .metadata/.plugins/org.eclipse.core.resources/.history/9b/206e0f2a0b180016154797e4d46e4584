@@ -1,0 +1,23 @@
+package testcaseapi;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Contact_us_sample_data {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		String inputurl = "http://clients.view9.com.au/captivation-sport/captivation_v3/contact";
+		
+		System.setProperty("webdriver.chrome.driver", "D:/chromedriver.exe");
+		
+		WebDriver driver = new ChromeDriver();
+		
+		driver.get(inputurl);
+		
+		driver.findElement(arg0)
+
+	}
+
+}
