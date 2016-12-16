@@ -3,6 +3,8 @@ package testcaseapi;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.LogStatus;
 import org.testng.Assert;
@@ -11,11 +13,17 @@ public class BackendTest {
 
 	public static void main(String[] args) throws InterruptedException  {
 		// TODO Auto-generated method stub
+		
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("chrome.switches","--disable-extensions");
+		
 		System.setProperty("webdriver.chrome.driver", "D:/chromedriver.exe");
+		
+	    WebDriver	driver = new ChromeDriver(options);
 		
 		String filepath = "D:\\captivation.test.report\\captivation.frontend\\captivation.backend.html";
 		
-		String baseurl = "http://clients.view9.com.au/captivation-sport/dev";
+		String baseurl = "http://development.view9.com.au/stage/captivation-sport/dev";
 		
 		String user = "captivation";
 		
@@ -24,8 +32,6 @@ public class BackendTest {
 		ExtentReports logger = ExtentReports.get(BackendTest.class);
 		
 		logger.init (filepath, true);
-		
-		WebDriver driver = new ChromeDriver();
 		
 		driver.manage().window().maximize();
 		
@@ -65,7 +71,7 @@ public class BackendTest {
 		
 		String notice = "There is a security update available for your version of Drupal.";
 		
-		driver.get("http://clients.view9.com.au/captivation-sport/dev/admin/dashboard");
+		driver.get("http://development.view9.com.au/stage/captivation-sport/dev/admin/dashboard");
 		
 		String system = driver.getPageSource();
 		
@@ -115,7 +121,7 @@ public class BackendTest {
 		
 		Thread.sleep(2000);
 		
-		driver.get("http://clients.view9.com.au/captivation-sport/dev/admin/content/product_property/595/edit/sport_category?destination=admin/content/product_property/sport_category");
+		driver.get("http://development.view9.com.au/stage/captivation-sport/dev/admin/content/product_property/595/edit/sport_category?destination=admin/content/product_property/sport_category");
 		
 		driver.findElement(By.id("edit-submit")).click();
 		
@@ -131,7 +137,7 @@ public class BackendTest {
 		}  else if (system.contains(apierror)){
 			Assert.assertTrue(system.contains(apierror));
 			System.out.println("API error found while edititng sport category.");
-			logger.log(LogStatus.PASS, "API error found while edititng sport category.");
+			logger.log(LogStatus.FAIL, "API error found while edititng sport category.");
 			
 		} else {
 			System.out.println("Test has been skipped.");
@@ -142,7 +148,7 @@ public class BackendTest {
 		
 		Thread.sleep(2000);
 		
-		driver.get("http://clients.view9.com.au/captivation-sport/dev/admin/content/product_property/15/edit/product_category?destination=admin/content/product_property/product_category");
+		driver.get("http://development.view9.com.au/stage/captivation-sport/dev/admin/content/product_property/15/edit/product_category?destination=admin/content/product_property/product_category");
 		
 		driver.findElement(By.id("edit-submit")).click();
 		
@@ -158,7 +164,7 @@ public class BackendTest {
 		}  else if (system.contains(apierror)){
 			Assert.assertTrue(system.contains(apierror));
 			System.out.println("API error found while edititng Product category.");
-			logger.log(LogStatus.PASS, "API error found while edititng Product category.");
+			logger.log(LogStatus.FAIL, "API error found while edititng Product category.");
 			
 		} else {
 			System.out.println("Test has been skipped.");
@@ -169,7 +175,7 @@ public class BackendTest {
 		
 		Thread.sleep(2000);
 		
-		driver.get("http://clients.view9.com.au/captivation-sport/dev/admin/content/product_property/630/edit/product_type?destination=admin/content/product_property/product_type");
+		driver.get("http://development.view9.com.au/stage/captivation-sport/dev/admin/content/product_property/630/edit/product_type?destination=admin/content/product_property/product_type");
 		
 		driver.findElement(By.id("edit-submit")).click();
 		
@@ -185,7 +191,7 @@ public class BackendTest {
 		}  else if (system.contains(apierror)){
 			Assert.assertTrue(system.contains(apierror));
 			System.out.println("API error found while edititng Product.");
-			logger.log(LogStatus.PASS, "API error found while edititng Product.");
+			logger.log(LogStatus.FAIL, "API error found while edititng Product.");
 			
 		} else {
 			System.out.println("Test has been skipped.");
@@ -194,9 +200,9 @@ public class BackendTest {
 		
 		logger.endTest();
 		
-		Thread.sleep(2000);
+	
 		
-		driver.get("http://clients.view9.com.au/captivation-sport/dev/admin/content/product/163/edit?destination=admin/content/product");
+	/*	driver.get("http://development.view9.com.au/stage/captivation-sport/dev/admin/content/product/408/edit?destination=admin/content/product");
 		
 		driver.findElement(By.id("edit-actions-submit")).click();
 		
@@ -212,18 +218,18 @@ public class BackendTest {
 		}  else if (system.contains(apierror)){
 			Assert.assertTrue(system.contains(apierror));
 			System.out.println("API error found while edititng design.");
-			logger.log(LogStatus.PASS, "API error found while edititng design.");
+			logger.log(LogStatus.FAIL, "API error found while edititng design.");
 			
 		} else {
 			System.out.println("Test has been skipped.");
 			logger.log(LogStatus.SKIP, "Test has been skipped.");
 		}
 		
-		logger.endTest();
+		logger.endTest(); */
 		
 		Thread.sleep(2000);
 		
-		driver.get("http://clients.view9.com.au/captivation-sport/dev/admin/content/product_property/21/edit/country?destination=admin/content/product_property/country");
+		driver.get("http://development.view9.com.au/stage/captivation-sport/dev/admin/content/product_property/21/edit/country?destination=admin/content/product_property/country");
 		
 		driver.findElement(By.id("edit-submit")).click();
 		
@@ -237,7 +243,7 @@ public class BackendTest {
 		}  else if (system.contains(apierror)){
 			Assert.assertTrue(system.contains(apierror));
 			System.out.println("API error found while edititng country.");
-			logger.log(LogStatus.PASS, "API error found while edititng country.");
+			logger.log(LogStatus.FAIL, "API error found while edititng country.");
 			
 		} else {
 			System.out.println("Test has been skipped.");
@@ -248,7 +254,7 @@ public class BackendTest {
 		
 		Thread.sleep(2000);
 		
-		driver.get("http://clients.view9.com.au/captivation-sport/dev/admin/content/product_property/953/edit/swatch?destination=admin/content/product_property/swatch");
+		driver.get("http://development.view9.com.au/stage/captivation-sport/dev/admin/content/product_property/953/edit/swatch?destination=admin/content/product_property/swatch");
 		
 		driver.findElement(By.id("edit-submit")).click();
 		
@@ -264,7 +270,7 @@ public class BackendTest {
 		}  else if (system.contains(apierror)){
 			Assert.assertTrue(system.contains(apierror));
 			System.out.println("API error found while edititng color palette.");
-			logger.log(LogStatus.PASS, "API error found while edititng color palette.");
+			logger.log(LogStatus.FAIL, "API error found while edititng color palette.");
 			
 		} else {
 			System.out.println("Test has been skipped.");
@@ -275,7 +281,7 @@ public class BackendTest {
 		
 		Thread.sleep(2000);
 		
-		driver.get("http://clients.view9.com.au/captivation-sport/dev/admin/content/product_property/644/edit/color?destination=admin/content/product_property/color");
+		driver.get("http://development.view9.com.au/stage/captivation-sport/dev/admin/content/product_property/644/edit/color?destination=admin/content/product_property/color");
 		
 		driver.findElement(By.id("edit-submit")).click();
 		
@@ -291,7 +297,7 @@ public class BackendTest {
 		}  else if (system.contains(apierror)){
 			Assert.assertTrue(system.contains(apierror));
 			System.out.println("API error found while edititng color.");
-			logger.log(LogStatus.PASS, "API error found while edititng color.");
+			logger.log(LogStatus.FAIL, "API error found while edititng color.");
 			
 		} else {
 			System.out.println("Test has been skipped.");
@@ -303,7 +309,7 @@ public class BackendTest {
 		
 		Thread.sleep(2000);
 		
-		driver.get("http://clients.view9.com.au/captivation-sport/dev/admin/content/product_property/90/edit/font?destination=admin/content/product_property/font");
+		driver.get("http://development.view9.com.au/stage/captivation-sport/dev/admin/content/product_property/90/edit/font?destination=admin/content/product_property/font");
 		
 		driver.findElement(By.id("edit-submit")).click();
 		
@@ -319,7 +325,7 @@ public class BackendTest {
 		}  else if (system.contains(apierror)){
 			Assert.assertTrue(system.contains(apierror));
 			System.out.println("API error found while edititng font.");
-			logger.log(LogStatus.PASS, "API error found while edititng font.");
+			logger.log(LogStatus.FAIL, "API error found while edititng font.");
 			
 		} else {
 			System.out.println("Test has been skipped.");

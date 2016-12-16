@@ -16,7 +16,7 @@ public class Homepage {
 		System.setProperty("webdriver.chrome.driver", "D:/chromedriver.exe");
 		
 		String filepath = "D:\\captivation.test.report\\captivation.frontend\\captivation.homepage.html";
-		String baseurl = "http://clients.view9.com.au/captivation-sport/captivation_v3/";
+		String baseurl = "http://development.view9.com.au/stage/captivation-sport/captivation_v3";
 		
 		ExtentReports logger = ExtentReports.get(Homepage.class);
 		logger.init (filepath, true);
@@ -163,7 +163,9 @@ public class Homepage {
 		
 		Thread.sleep(2000);
 		
-		driver.findElement(By.id("email")).sendKeys("abc@example.com"+Keys.ENTER);
+		String email = "abc@example.com";
+		
+		driver.findElement(By.id("email")).sendKeys(email+Keys.ENTER);
 		
 		Thread.sleep(5000);
 		
@@ -194,7 +196,82 @@ public class Homepage {
 		logger.endTest();
 		
 		Thread.sleep(2000);
+		
+		
+		driver.get(baseurl);
+		
+		String metaelements = driver.findElement(By.xpath("//meta[@name='description']")).getAttribute("content");
+		
+		driver.findElement(By.xpath("//meta[@name='description']")).getAttribute("content");
 		 
+		logger.startTest("6. SEO tag verification");
+		
+		if(metaelements.contains("{")){
+			Assert.assertTrue(metaelements.contains("{"));
+			System.out.println("SEO meta tag verification failed."+" currently SEO meta content value is "+metaelements);
+			logger.log(LogStatus.FAIL, "SEO meta tag verification failed."+" currently SEO meta content value is "+metaelements);
+			
+		} else if (!metaelements.contains("{")){
+			Assert.assertTrue(!metaelements.contains("{"));
+			System.out.println("SEO meta tag verification success."+" currently SEO meta content value is "+metaelements);
+			logger.log(LogStatus.PASS, "SEO meta tag verification success."+" currently SEO meta content value is "+metaelements);
+		} else {
+			System.out.println("Test has been skipped.");
+			logger.log(LogStatus.SKIP, "Test has been skipped.");
+		}
+		
+		logger.endTest();
+		
+		// SEO testing for product detail page
+		
+		String productpage = "http://development.view9.com.au/stage/captivation-sport/captivation_v3/custom-sportswear/netball/line-netball-dress";
+		
+		driver.get(productpage);
+		
+		String metaelementsproduct = driver.findElement(By.xpath("//meta[@name='description']")).getAttribute("content");
+		
+		
+		driver.findElement(By.xpath("//meta[@name='description']")).getAttribute("content");
+		
+		logger.startTest("7. Product detail SEO tag verification");
+		
+		if(metaelementsproduct.contains("{")){
+			Assert.assertTrue(metaelementsproduct.contains("{"));
+			System.out.println("SEO meta tag verification failed."+" currently SEO meta content value is "+metaelementsproduct);
+			logger.log(LogStatus.FAIL, "SEO meta tag verification failed."+" currently SEO meta content value is "+metaelementsproduct);
+			
+		} else if (!metaelementsproduct.contains("{")){
+			Assert.assertTrue(!metaelementsproduct.contains("{"));
+			System.out.println("SEO meta tag verification success."+" currently SEO meta content value is "+metaelementsproduct);
+			logger.log(LogStatus.PASS, "SEO meta tag verification success."+" currently SEO meta content value is "+metaelementsproduct);
+		} else {
+			System.out.println("Test has been skipped.");
+			logger.log(LogStatus.SKIP, "Test has been skipped.");
+		}
+		
+		logger.endTest();
+		
+		
+		logger.startTest("8. Dynamic SEO tag Verification for individual pages");
+		
+		if (metaelements.equals(metaelementsproduct)){
+			Assert.assertTrue(metaelements.equals(metaelementsproduct));
+			System.out.println("Same meta tags are displayed in Homepage and productdetail page.");
+			logger.log(LogStatus.FAIL, "Same meta tags are displayed in Homepage and productdetail page.");
+		
+		} else if (!metaelements.equals(metaelementsproduct)){
+			Assert.assertTrue(!metaelements.equals(metaelementsproduct));
+			System.out.println("Same meta tags are not displayed in Homepage and productdetail page.");
+			logger.log(LogStatus.PASS, "Same meta tags are  not displayed in Homepage and productdetail page.");
+			
+		} else {
+			System.out.println("Test has been skipped.");
+			logger.log(LogStatus.SKIP, "Test has been skipped.");
+		}
+		
+		
+		logger.endTest();
+		
 		driver.get(filepath);
 		
 	}

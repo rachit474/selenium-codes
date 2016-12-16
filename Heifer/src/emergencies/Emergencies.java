@@ -136,7 +136,7 @@ public class Emergencies {
 		logger.endTest();
 		
 		
-		logger.startTest("4. Inner pages banner height verification");
+		/*logger.startTest("4. Inner pages banner height verification");
 		
 		String requiredheight = "340px";
 		
@@ -160,6 +160,39 @@ public class Emergencies {
 		}
 		
 		logger.endTest();
+		
+		
+		driver.findElement(By.linkText("IMPLEMENTING PARTNERS")).click();
+		
+		String partners = driver.getPageSource();
+		
+		String duplicate = "";
+		
+		driver.getPageSource();
+		
+		logger.startTest("5. Duplicate content verification");
+		
+		if (partners.contains(duplicate)){
+			Assert.assertTrue(partners.contains(duplicate));
+			System.out.println("duplicate data has been found.");
+			logger.log(LogStatus.FAIL, "duplicate data has been found.");
+			} else if (!partners.contains(duplicate)){
+				Assert.assertTrue(!partners.contains(duplicate));
+				System.out.println("No duplicate data has been found.");
+				logger.log(LogStatus.PASS, "No duplicate data has been found.");
+				
+			} else {
+				System.out.println("Test has been skipped.");
+				logger.log(LogStatus.SKIP, "Test has been skipped.");
+			}
+		
+		logger.endTest();
+		*/
+		
+		
+		
+		
+		
 		
 		WebDriver report = new ChromeDriver ();
 		

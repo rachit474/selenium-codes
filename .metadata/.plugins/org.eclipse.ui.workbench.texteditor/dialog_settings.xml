@@ -2,15 +2,19 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="2" key="selection"/>
+		<item value="http://queenslandplumbing.com.au" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="http://development.view9.com.au/stage/qld/"/>
+			<item value="http://clients.view9.com.au/"/>
 			<item value="1"/>
 		</list>
 		<list key="replacehistory">
+			<item value="http://queenslandplumbing.com.au"/>
+			<item value="http://development.view9.com.au/stage/"/>
 			<item value="2"/>
 		</list>
 	</section>
